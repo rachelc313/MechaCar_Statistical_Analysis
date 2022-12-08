@@ -26,3 +26,28 @@ total_summary <- Suspension_Coil %>%
 lot_summary <- Suspension_Coil %>%
   group_by(Manufacturing_Lot) %>%
   summarize(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), SD=sd(PSI), .groups = 'keep')
+
+# Write an RScript using the t.test() function to determine if the PSI across all manufacturing
+# lots is statistically different from the population mean of 1,500 pounds per square inch.
+
+# Create sample table
+sample_table <- Suspension_Coil %>%
+  sample_n(50)
+
+# Compare means of sample_table and population
+t.test(lot_summary$Mean,mu=mean(Suspension_Coil$PSI)) # p-value is 1
+
+
+# Write three more RScripts using the t.test and subset functions to determine if the PSI for
+# each manufacturing lot is statistically different from the population mean 
+# of 1,500 pounds per square inch.
+
+# Create table for each lot
+lot1_table <- subset(Suspension_Coil,Manufacturing_Lot=="Lot1")
+lot2_table <- subset(Suspension_Coil,Manufacturing_Lot=="Lot2")
+lot3_table <- subset(Suspension_Coil,Manufacturing_Lot=="Lot3")
+
+# Compare mean each lot to population mean
+t.test(lot1_table$PSI,mu=mean(Suspension_Coil$PSI)) #p-value is 1.568e-11
+t.test(lot2_table$PSI,mu=mean(Suspension_Coil$PSI)) #p-value is 0.0005911
+t.test(lot3_table$PSI,mu=mean(Suspension_Coil$PSI)) #p-value is 0.1589
