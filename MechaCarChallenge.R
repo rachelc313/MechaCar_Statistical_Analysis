@@ -9,13 +9,11 @@ MechaCar_mpg <- read.csv("MechaCar_mpg.csv",check.names=F,stringsAsFactors = F)
 model <- lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AWD,data=MechaCar_mpg)
 
 # Using the summary() function, determine the p-value and the r-squared value for the linear regression model.
-model_summary <- summary(model) # p-value is 5.35e-11(There is no sufficient evidence to reject our null hypothesis), 
+summary(model) # p-value is 5.35e-11(There is sufficient evidence to reject our null hypothesis), 
 # r-squared value is 0.7149(Approx 72% of the predictions will be correct) - the slope of our linear model is
 # not zero.
 
-# Calculate Pearson correlation coefficient to compare to rsquared value to confirm accuracey.
-plt <- ggplot(MechaCar_mpg,aes(x=ground_clearance,y=mpg))
+Suspension_Coil <- read.csv("Suspension_Coil.csv",check.names = F,stringsAsFactors = F)
 
-plt + geom_point()
-
-cor(MechaCar_mpg$ground_clearance,MechaCar_mpg$mpg)
+# Write an RScript that creates a total_summary dataframe using the summarize() function to
+# get the mean, median, and standard deviation of the suspension coil's PSI column.
